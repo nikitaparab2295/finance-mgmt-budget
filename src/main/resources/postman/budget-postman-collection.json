@@ -1,0 +1,100 @@
+{
+  "info": {
+    "name": "Budget API Collection",
+    "_postman_id": "f7b13d8d-3cbb-4b29-b36a-e75acbb55079",
+    "description": "Postman collection for BudgetController APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Budget",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ownerId\": \"user123\",\n  \"category\": \"Food\",\n  \"month\": \"2025-01\",\n  \"amount\": 500\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/budgets",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "budgets"]
+        }
+      }
+    },
+    {
+      "name": "Get Budget By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8081/api/budgets/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "budgets", "1"]
+        }
+      }
+    },
+    {
+      "name": "Search Budget",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8081/api/budgets/search?ownerId=user123&category=Food&month=2025-01",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "budgets", "search"],
+          "query": [
+            { "key": "ownerId", "value": "user123" },
+            { "key": "category", "value": "Food" },
+            { "key": "month", "value": "2025-01" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Budget",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 900\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/budgets/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "budgets", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Budget",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8081/api/budgets/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["api", "budgets", "1"]
+        }
+      }
+    }
+  ]
+}

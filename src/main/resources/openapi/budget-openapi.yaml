@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8081
+  description: Generated server url
+paths:
+  /api/budgets/{id}:
+    get:
+      tags:
+      - budget-controller
+      operationId: getById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Budget"
+    patch:
+      tags:
+      - budget-controller
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BudgetUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Budget"
+    delete:
+      tags:
+      - budget-controller
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/budgets:
+    post:
+      tags:
+      - budget-controller
+      operationId: createBudget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BudgetCreateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Budget"
+  /api/budgets/search:
+    get:
+      tags:
+      - budget-controller
+      operationId: findByOwnerCategoryMonth
+      parameters:
+      - name: ownerId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Budget"
+components:
+  schemas:
+    BudgetUpdateRequest:
+      type: object
+      properties:
+        amount:
+          minimum: 0.00
+          exclusiveMinimum: false
+          type: number
+    Budget:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        ownerId:
+          type: string
+        category:
+          type: string
+        monthStart:
+          type: string
+          format: date
+        amount:
+          type: number
+    BudgetCreateRequest:
+      required:
+      - category
+      - month
+      - ownerId
+      type: object
+      properties:
+        ownerId:
+          type: string
+        category:
+          type: string
+        month:
+          type: string
+        amount:
+          minimum: 0.00
+          exclusiveMinimum: false
+          type: number
