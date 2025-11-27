@@ -49,7 +49,8 @@ After starting the service:
 * [http://localhost:8081/v3/api-docs](http://localhost:8081/v3/api-docs)
 * [http://localhost:8081/v3/api-docs.yaml](http://localhost:8081/v3/api-docs.yaml)
 
-You can also import the provided `budget-openapi.yaml` into Postman or any API tool.
+Swagger specifications: budget-openapi.yaml
+You can also import the provided `budget-postman-collection.json` into Postman or any API tool.
 
 ---
 
