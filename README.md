@@ -84,3 +84,8 @@ Run tests using:
 ```bash
 ./gradlew test
 ```
+---
+## Docker Instructions
+
+docker build -t finance-mgmt-budget .
+docker run -p 8081:8081 finance-mgmt-budget
